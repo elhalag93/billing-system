@@ -37,7 +37,7 @@ public class CDRParser {
                         while ((row = csvReader.readLine()) != null) {
                             String[] data = row.split(",");
                             CDR cdr = new CDR(Long.parseLong(data[0]),
-                                    Long.parseLong(data[1]),
+                                    data[1],
                                     Integer.parseInt(data[2]),
                                     Integer.parseInt(data[3]),
                                     data[4],
@@ -51,7 +51,7 @@ public class CDRParser {
                         }
                     }
                 }
-                if (file.renameTo(new File("D:\\ITI\\Billing\\CDRParser\\CDRs archived\\" + file.getName()))) {
+                if (file.renameTo(new File("D:\\ITI\\Billing\\CDRParser\\CDRs archived\\archived" + file.getName()))) {
                     file.delete();
                     System.out.println("File moved successfully");
                 }

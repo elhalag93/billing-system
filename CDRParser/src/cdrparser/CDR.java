@@ -15,7 +15,7 @@ import java.sql.Time;
 public class CDR {
     
     private long origin;
-    private long destination;
+    private String destination;
     private int serviceID;
     private int duration_message_volume;
     private String startDate;
@@ -24,7 +24,7 @@ public class CDR {
     private float internalRating;
     private boolean isRated;
 
-    public CDR(long origin, long destination, int serviceID, int duration_message_volume, String startDate, Time startTime, float externalRating, float internalRating, boolean isRated) {
+    public CDR(long origin, String destination, int serviceID, int duration_message_volume, String startDate, Time startTime, float externalRating, float internalRating, boolean isRated) {
         this.origin = origin;
         this.destination = destination;
         this.serviceID = serviceID;
@@ -41,7 +41,7 @@ public class CDR {
         return origin;
     }
 
-    public long getDestination() {
+    public String getDestination() {
         return destination;
     }
 
@@ -77,7 +77,7 @@ public class CDR {
         this.origin = origin;
     }
 
-    public void setDestination(long destination) {
+    public void setDestination(String destination) {
         this.destination = destination;
     }
 

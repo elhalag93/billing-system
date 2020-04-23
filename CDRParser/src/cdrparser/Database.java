@@ -45,7 +45,7 @@ public class Database {
             sqlCommand = "INSERT INTO cdr VALUES (?,?,?,?,?,?,?,?,?)";
             preparedStatment = connection.prepareStatement(sqlCommand);
             preparedStatment.setLong(1, cdr.getOrigin());
-            preparedStatment.setLong(2, cdr.getDestination());
+            preparedStatment.setString(2, cdr.getDestination());
             preparedStatment.setInt(3, cdr.getServiceID());
             preparedStatment.setInt(4, cdr.getDuration_message_volume());
             preparedStatment.setString(5, cdr.getStartDate());
