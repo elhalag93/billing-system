@@ -18,6 +18,7 @@ public class Customer {
     Date birthDate;
     String job;
     String nationalID;
+    int ratePlane_id;
 
     public Customer(int customerID, String customerName, String msisdn, String email, String address, Date birthDate, String job, String nationalID) {
         this.customerID = customerID;
@@ -74,6 +75,10 @@ public class Customer {
         return nationalID;
     }
 
+    public int getRatePlane_id() {
+        return ratePlane_id;
+    }
+
     
     
     
@@ -112,6 +117,10 @@ public class Customer {
 
     public void setNationalID(String nationalID) {
         this.nationalID = nationalID;
+    }
+
+    public void setRatePlane_id(int ratePlane_id) {
+        this.ratePlane_id = ratePlane_id;
     }
     
     

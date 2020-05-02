@@ -4,9 +4,57 @@
         <servlet-name>CDRUploadHandler</servlet-name>
         <servlet-class>cdr.CDRUploadHandler</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>serices</servlet-name>
+        <servlet-class>serices</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>NewService</servlet-name>
+        <servlet-class>webApp.NewService</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>NewServicePack</servlet-name>
+        <servlet-class>webApp.NewServicePack</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>NewRatePlan</servlet-name>
+        <servlet-class>webApp.NewRatePlan</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>NewProfile</servlet-name>
+        <servlet-class>webApp.NewProfile</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>NewCustomer</servlet-name>
+        <servlet-class>webApp.NewCustomer</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>CDRUploadHandler</servlet-name>
         <url-pattern>/upload</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>serices</servlet-name>
+        <url-pattern>/serices</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>NewService</servlet-name>
+        <url-pattern>/NewService</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>NewServicePack</servlet-name>
+        <url-pattern>/NewServicePack</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>NewRatePlan</servlet-name>
+        <url-pattern>/NewRatePlan</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>NewProfile</servlet-name>
+        <url-pattern>/NewProfile</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>NewCustomer</servlet-name>
+        <url-pattern>/NewCustomer</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
