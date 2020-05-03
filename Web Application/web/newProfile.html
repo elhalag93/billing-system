@@ -4,41 +4,24 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
-<html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
     <head>
-        <title>New Profile</title>
         <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-    <body style="background-color: beige">
-       
-        
-        
-        
-          <form action="NewProfile" method="POST"  class="s003 inner-form">
-              
-            <label for="name">Profile ID</label><br>
-            <input type="text" id="servicePkg_id" name="profileID" value="" required><br>
-            
-            <label for="name">Customer ID</label><br>
-            <input type="text" id="cost_weekend_origeqdest" name="customerID" value="" required><br>
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title>New Profile</title>
+                <link rel="stylesheet" href="style2.css">
+                    </head>
+                    <body>
+                        <div  class="form-style">
+                            <form action="NewProfile" method="POST"  class="s003 inner-form">
+                                <label>Profile ID<input  required type="text" name="profileID" /></label> <br /> <br />
+                                <label>Customer ID<input  required type="text"  name="customerID"/></label><br /><br />
+                                <label>RatePlan ID<input  required type="text" name="RatePlanID"/></label> <br /><br />
 
-            
-            <label for="name">RatePlan ID</label><br>
-            <input type="text" id="serviceID" name="RatePlanID" value="" required><br>
-            
-            
+                                <input type="submit" value="Submit">
+                            </form>
+                        </div>
 
-
-         
-            
-            
-               
-            <input type="submit" value="Submit">
-        </form>        
-                
-        
-
-       
-    </body>
-</html>
+                    </body>
+                    </html>

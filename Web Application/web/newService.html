@@ -4,41 +4,25 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
-<html>
-    <head>
-        <title>New Service</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-    <body style="background-color: beige">
 
-        
-          <form action="NewService" method="POST"  class="s003 inner-form">
-             
-            <label for="name" class="inner-form">Service ID</label><br>
-            <input type="text" id="serviceID" name="serviceID" value="" class="inner-form" required><br>
-            
-            <label for="password">service Name</label><br>
-            <input type="text" id="serviceName" name="serviceName" value="" required><br>
-            
-            <label for="name">Service Type</label><br>
-            <input type="text" id="serviceType" name="serviceType" value="" required><br>
-            
-            
-               
-            <input type="submit" value="Submit">
-        </form>        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-    </body>
-</html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title>New Service</title>
+                <link rel="stylesheet" href="style2.css">
+                    </head>
+                    <body>
+                        <div  class="form-style">
+                            <form action="NewService" method="POST"  class="s003 inner-form">
+                                <label>Service ID<input  required type="text" name="serviceID" /></label> <br /> <br />
+                                <label>service Name<input  required type="text"  name="serviceName"/></label><br /><br />
+                                <label>Service Type<input  required type="text" name="serviceType"/></label> <br /><br />
+
+                                <input type="submit" value="Submit">
+                            </form>
+                        </div>
+
+                    </body>
+                    </html>

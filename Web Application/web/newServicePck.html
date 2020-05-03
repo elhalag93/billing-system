@@ -4,45 +4,26 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
-<html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
     <head>
-        <title>New ServicePackage</title>
         <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-    <body style="background-color: beige">
-       
-        
-        
-        
-          <form action="NewServicePack" method="POST"  class="s003 inner-form">
-             
-            
-            <label for="password">service Package ID</label><br>
-            <input type="text" id="servicePkg_id" name="servicePkg_id" value="" required><br>
-            
-            <label for="name">Service ID</label><br>
-            <input type="text" id="serviceID" name="serviceID" value="" required><br>
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title>New ServicePackage</title>
+                <link rel="stylesheet" href="style2.css">
+                    </head>
+                    <body>
+                        <div  class="form-style">
+                            <form action="NewServicePack" method="POST"  class="s003 inner-form">
+                                <label>service Package ID<input  required type="text" name="servicePkg_id" /></label> <br /> <br />
+                                <label>Service ID<input  required type="text"  name="serviceID"/></label><br /><br />
+                                <label>Weekends Cost(orgin=Dest)<input  required type="text" name="cost_weekend_origEQdest"/></label> <br /><br />
+                                <label>Weekends Cost(orgin!=Dest)<input  required type="text" name="cost_weekend_origNEQdest"/></label> <br /><br />
+                                <label>Week-days Cost(orgin=Dest)<input  required type="text" name="cost_weekdays_origEQdest"/></label> <br /><br />
+                                <label>Week-days Cost(orgin!=Dest)<input  required type="text" name="cost_weekdays_origNEQdest"/></label> <br /><br />
 
-            <label for="name">Weekends Cost(orgin=Dest)</label><br>
-            <input type="text" id="cost_weekend_origeqdest" name="cost_weekend_origEQdest" value="" required><br>
+                                <input type="submit" value="Submit">
+                            </form>
+                        </div>
 
-            <label for="name">Weekends Cost(orgin!=Dest)</label><br>
-            <input type="text" id="cost_weekend_origneqdest" name="cost_weekend_origNEQdest" value="" required><br>
-
-            <label for="name">Week-days Cost(orgin=Dest)</label><br>
-            <input type="text" id="cost_weekdays_origEQdest" name="cost_weekdays_origEQdest" value="" required><br>
-
-            <label for="name">Week-days Cost(orgin!=Dest)</label><br>
-            <input type="text" id="cost_weekdaysorigNEQdest" name="cost_weekdays_origNEQdest" value="" required><br>            
-            
-            
-               
-            <input type="submit" value="Submit">
-        </form>        
-                
-        
-
-       
-    </body>
-</html>
+                    </body>
+                    </html>
