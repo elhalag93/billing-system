@@ -1,17 +1,21 @@
 
-package webApp;
+package WebInterface;
 
 /**
  *
  * @author mo
  */
 
+import classes.Customer;
+import classes.Profile;
+import classes.RatePlan;
+import classes.ServicePackage;
+import classes.Services;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -20,7 +24,7 @@ import java.util.logging.Logger;
 public class Database {
     private final String url = "jdbc:postgresql://localhost:5432/billing";
     private final String user = "postgres";
-    private final String password = "123456";
+    private final String password = "postgres";
     private Connection connection;
     private String sqlcommand;
     private PreparedStatement preparedstatement;

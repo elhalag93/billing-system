@@ -1,4 +1,4 @@
-package webApp;
+package WebInterface;
 
 
 import java.io.IOException;
@@ -14,17 +14,18 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class NewService extends HttpServlet {
 
-    Database db=new Database();
+    
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         PrintWriter out = response.getWriter(); 
+        Database db=new Database();
         db.services.setServiceID(Integer.parseInt(request.getParameter("serviceID")));
         db.services.setServiceName(request.getParameter("serviceName"));
         db.services.setServiceType(request.getParameter("serviceType"));
         db.addNewService();
-        out.print("Service is added");
+        out.print("Service added");
         
     }
 

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package webApp;
+package WebInterface;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -29,7 +29,7 @@ public class NewProfile extends HttpServlet {
         db.profile.setCustomerID(Integer.parseInt(request.getParameter("customerID")));
         db.profile.setRatePlanID(Integer.parseInt(request.getParameter("RatePlanID")));
         db.addNewProfil();
-        out.print("Profile is added");
+        out.print("Profile added");
     }
 
   

@@ -1,6 +1,6 @@
 
 
-package webApp;
+package classes;
 
 /**
  *
@@ -23,7 +23,7 @@ public class Services {
         this.serviceType = serviceType;
     }    
 
-    Services() {
+    public Services() {
       
     }
 

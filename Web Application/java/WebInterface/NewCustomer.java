@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package webApp;
+package WebInterface;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -12,7 +12,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.text.SimpleDateFormat;  
 /**
  *
  * @author mo
@@ -32,16 +31,9 @@ public class NewCustomer extends HttpServlet {
         db.customer.setAddress(request.getParameter("address"));
         db.customer.setJob(request.getParameter("job"));
         db.customer.setNationalID(request.getParameter("nationalID"));
-        db.customer.setRatePlane_id(Integer.parseInt(request.getParameter("RatePlanID")));
-        
+        db.customer.setRatePlane_id(Integer.parseInt(request.getParameter("RatePlanID")));       
         db.addNewCustomer();
-        
-        
-        
-        
-        
-        
-        
+   
     }
 
 }

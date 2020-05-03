@@ -1,4 +1,4 @@
-package webApp;
+package classes;
 /**
  *
  * @author mo
@@ -24,7 +24,7 @@ public class ServicePackage {
 
 
 
-    ServicePackage() {
+    public ServicePackage() {
        
     }
 

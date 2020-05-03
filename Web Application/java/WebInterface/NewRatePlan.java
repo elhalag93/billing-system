@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package webApp;
+package WebInterface;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -32,7 +32,7 @@ public class NewRatePlan extends HttpServlet {
         db.ratePlan.setFreeUnits(Integer.parseInt(request.getParameter("freeUnits")));
         db.ratePlan.setMonthlyFee(Float.parseFloat(request.getParameter("monthlyFee")));
         db.addNewRatePlan();
-        out.print("RatePlane is added");
+        out.print("RatePlane added");
     }
 
 

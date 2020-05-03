@@ -1,5 +1,5 @@
 
-package webApp;
+package classes;
 
 import java.sql.Date;
 
@@ -33,7 +33,7 @@ public class Customer {
 
 
 
-    Customer() {
+    public Customer() {
      
     }
 

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package webApp;
+package WebInterface;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -31,7 +31,7 @@ public class NewServicePack extends HttpServlet {
         db.servicePackage.setCost_D_orgEQdest(Float.parseFloat(request.getParameter("cost_weekdays_origEQdest")));
         db.servicePackage.setCost_D_orgNEQdest(Float.parseFloat(request.getParameter("cost_weekdays_origNEQdest")));
         db.addServicePackage();
-        out.print("Service Package is added");
+        out.print("Service Package added");
         
     }
 

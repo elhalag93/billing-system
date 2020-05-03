@@ -1,5 +1,5 @@
 
-package webApp;
+package classes;
 
 /**
  *
@@ -18,7 +18,7 @@ public class RatePlan {
         this.monthlyFee = monthlyFee;
     }
 
-    RatePlan() {
+    public RatePlan() {
         
     }
 

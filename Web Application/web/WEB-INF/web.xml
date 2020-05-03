@@ -10,23 +10,23 @@
     </servlet>
     <servlet>
         <servlet-name>NewService</servlet-name>
-        <servlet-class>webApp.NewService</servlet-class>
+        <servlet-class>WebInterface.NewService</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>NewServicePack</servlet-name>
-        <servlet-class>webApp.NewServicePack</servlet-class>
+        <servlet-class>WebInterface.NewServicePack</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>NewRatePlan</servlet-name>
-        <servlet-class>webApp.NewRatePlan</servlet-class>
+        <servlet-class>WebInterface.NewRatePlan</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>NewProfile</servlet-name>
-        <servlet-class>webApp.NewProfile</servlet-class>
+        <servlet-class>WebInterface.NewProfile</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>NewCustomer</servlet-name>
-        <servlet-class>webApp.NewCustomer</servlet-class>
+        <servlet-class>WebInterface.NewCustomer</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>CDRUploadHandler</servlet-name>
