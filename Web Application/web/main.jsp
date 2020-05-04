@@ -20,8 +20,20 @@
         <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
     </head>
     <body>
-
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 col-sm-12 col-12">
+                </div>
+                <div class="col-md-4 col-12 text-center">
+                    <h2 class="my-md-3 site-title text-black">Managment System</h2>
+                </div>
+            </div>
+        </div>
         <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+            <form class="form-inline my-2 my-lg-0" action="search.jsp">
+                <input class="form-control mr-sm-2" type="search" name="keyword" placeholder="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search Customer</button>
+            </form>
             <li class="nav-item">
                 <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#newService" role="tab" aria-controls="pills-home" aria-selected="true">Add Service</a>
             </li>
@@ -32,12 +44,15 @@
                 <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#newRatePlan" role="tab" aria-controls="pills-contact" aria-selected="false">Add RatePlan</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#newProfile" role="tab" aria-controls="pills-contact" aria-selected="false">Add Profile</a>
-            </li>
-            <li class="nav-item">
                 <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#newCustomer" role="tab" aria-controls="pills-contact" aria-selected="false">Add Customer</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#newProfile" role="tab" aria-controls="pills-contact" aria-selected="false">Add Profile</a>
+            </li>
+
+
         </ul>
+
         <div class="tab-content" id="pills-tabContent">
             <div class="tab-pane fade show active" id="newService" role="tabpanel" aria-labelledby="pills-home-tab"><%@include file="newService.html" %></div>
             <div class="tab-pane fade" id="newServicePck" role="tabpanel" aria-labelledby="pills-profile-tab"><%@include file="newServicePck.html" %></div>
