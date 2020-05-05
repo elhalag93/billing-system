@@ -10,7 +10,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Managment System</title>
+        <title>Billing Portal</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
@@ -25,15 +25,12 @@
                 <div class="col-md-4 col-sm-12 col-12">
                 </div>
                 <div class="col-md-4 col-12 text-center">
-                    <h2 class="my-md-3 site-title text-black">Managment System</h2>
+                    <h2 class="my-md-3 site-title text-black">Billing Portal</h2>
                 </div>
             </div>
         </div>
         <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-            <form class="form-inline my-2 my-lg-0" action="search.jsp">
-                <input class="form-control mr-sm-2" type="search" name="keyword" placeholder="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search Customer</button>
-            </form>
+
             <li class="nav-item">
                 <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#newService" role="tab" aria-controls="pills-home" aria-selected="true">Add Service</a>
             </li>
@@ -49,7 +46,10 @@
             <li class="nav-item">
                 <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#newProfile" role="tab" aria-controls="pills-contact" aria-selected="false">Add Profile</a>
             </li>
-
+            <li>            <form class="form-inline my-2 my-lg-0" action="search.jsp">
+                    <input class="form-control mr-sm-2" type="search" name="key" placeholder="MSISDN" value="">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search Customer</button>
+                </form></li>
 
         </ul>
 

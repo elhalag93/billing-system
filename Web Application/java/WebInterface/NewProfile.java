@@ -24,8 +24,7 @@ public class NewProfile extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        PrintWriter out = response.getWriter(); 
-        db.profile.setProfileID(Integer.parseInt(request.getParameter("profileID")));   
+        PrintWriter out = response.getWriter();    
         db.profile.setCustomerID(Integer.parseInt(request.getParameter("customerID")));
         db.profile.setRatePlanID(Integer.parseInt(request.getParameter("RatePlanID")));
         db.addNewProfil();
