@@ -22,7 +22,10 @@
                 String customerMSISDN = request.getParameter("key");
                 Database db = new Database();
                 customer = db.getCustomer(customerMSISDN);
-            }%>  
+                if (customer.getMsisdn() == null) {
+                    response.sendRedirect("/BillingProject/main.jsp" + "?customerError=true");
+                } else {
+        %>  
 
         <div class="row">
             <div class="col mb-3">
@@ -41,9 +44,12 @@
                                 </div>
                             </div>
                             <ul class="nav nav-tabs">
-                                <li class="nav-item"><a href="" class="active nav-link">INFO: </a></li>
+                                <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#info" role="tab" aria-controls="pills-home" aria-selected="true">Info: </a>
+                                <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#bills" role="tab" aria-controls="pills-home" aria-selected="false">Bills: </a>
+                                <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="" role="tab" aria-controls="pills-home" aria-selected="false">Active Services: </a>
                             </ul>
-                            <div class="tab-content pt-3">
+
+                            <div class="tab-content pt-3" id="info">
                                 <div class="tab-pane active">
                                     <form class="form" novalidate="">
                                         <div class="row">
@@ -117,11 +123,14 @@
 
                                 </div>
                             </div>
+                                                        <div id="bills"></div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
         <a class="btn btn-outline-success my-2 my-sm-0" data-toggle="pill" href="main.jsp" aria-controls="pills-contact">Main</a>
+        <%}
+            }%>
     </body>
 </html>

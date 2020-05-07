@@ -20,6 +20,24 @@
         <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
     </head>
     <body>
+        <%
+            if (request.getParameter("customerError") != null && request.getParameter("customerError").equals("true")) {
+        %>
+        <script type="text/javascript">
+            alert("No such Customer.");
+        </script>        
+        <%
+            }
+        %> 
+        <%
+            if (request.getParameter("success") != null && request.getParameter("success").equals("true")) {
+        %>
+        <script type="text/javascript">
+            alert("Added Successfully.");
+        </script>        
+        <%
+            }
+        %> 
         <div class="container">
             <div class="row">
                 <div class="col-md-4 col-sm-12 col-12">
@@ -46,7 +64,7 @@
             <li class="nav-item">
                 <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#newProfile" role="tab" aria-controls="pills-contact" aria-selected="false">Add Profile</a>
             </li>
-            <li>            <form class="form-inline my-2 my-lg-0" action="search.jsp">
+            <li>            <form class="form-inline my-2 my-lg-0" action="customerInfo.jsp">
                     <input class="form-control mr-sm-2" type="search" name="key" placeholder="MSISDN" value="">
                     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search Customer</button>
                 </form></li>
@@ -65,5 +83,6 @@
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
         <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
     </body>
 </html>
