@@ -67,7 +67,7 @@ public class Database {
     private void stop() {
         try {
             connection.close();
-            System.out.println("Database is stopped");
+            System.out.println("Database stopped");
         } catch (SQLException ex) {
             Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
         }

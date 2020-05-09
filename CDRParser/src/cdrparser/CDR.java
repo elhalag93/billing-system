@@ -23,8 +23,22 @@ public class CDR {
     private float externalRating;
     private float internalRating;
     private boolean isRated;
+    private int cdrID;
 
-    public CDR(long origin, String destination, int serviceID, int duration_message_volume, String startDate, Time startTime, float externalRating, float internalRating, boolean isRated) {
+    public CDR(long origin, String destination, int serviceID, int duration_message_volume, String startDate, Time startTime, float externalRating, float internalRating, boolean isRated, int cdrID) {
+        this.origin = origin;
+        this.destination = destination;
+        this.serviceID = serviceID;
+        this.duration_message_volume = duration_message_volume;
+        this.startDate = startDate;
+        this.startTime = startTime;
+        this.externalRating = externalRating;
+        this.internalRating = internalRating;
+        this.isRated = isRated;
+        this.cdrID = cdrID;
+    }
+    
+        public CDR(long origin, String destination, int serviceID, int duration_message_volume, String startDate, Time startTime, float externalRating, float internalRating, boolean isRated) {
         this.origin = origin;
         this.destination = destination;
         this.serviceID = serviceID;
@@ -107,6 +121,18 @@ public class CDR {
 
     public void setIsRated(boolean isRated) {
         this.isRated = isRated;
+    }
+
+    public boolean isIsRated() {
+        return isRated;
+    }
+
+    public int getCdrID() {
+        return cdrID;
+    }
+
+    public void setCdrID(int cdrID) {
+        this.cdrID = cdrID;
     }
     
     
