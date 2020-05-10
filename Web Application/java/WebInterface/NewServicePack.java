@@ -31,7 +31,7 @@ public class NewServicePack extends HttpServlet {
         db.servicePackage.setCost_D_orgEQdest(Float.parseFloat(request.getParameter("cost_weekdays_origEQdest")));
         db.servicePackage.setCost_D_orgNEQdest(Float.parseFloat(request.getParameter("cost_weekdays_origNEQdest")));
         db.addServicePackage();
-        out.print("Service Package added");
+        response.sendRedirect("/BillingProject/main.jsp"+"?success=true");
         
     }
 

@@ -80,7 +80,7 @@ public class Database {
         Vector<CDR> unratedCdrs = new Vector();
         try {
             connect();
-            sqlcommand = "select * from cdr where israted = false";
+            sqlcommand = "select * from cdr where israted = false and isbilled= false";
             preparedstatement = connection.prepareStatement(sqlcommand);
             result = preparedstatement.executeQuery();
             while (result.next()) {

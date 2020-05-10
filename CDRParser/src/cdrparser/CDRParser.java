@@ -44,6 +44,7 @@ public class CDRParser {
                                     Time.valueOf(data[5]),
                                     Float.parseFloat(data[6]),
                                     0,
+                                    false,
                                     false);
                             Database database = new Database();
                             database.addCdr(cdr);

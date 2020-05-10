@@ -32,7 +32,7 @@ public class NewRatePlan extends HttpServlet {
         db.ratePlan.setFreeUnits(Integer.parseInt(request.getParameter("freeUnits")));
         db.ratePlan.setMonthlyFee(Float.parseFloat(request.getParameter("monthlyFee")));
         db.addNewRatePlan();
-        out.print("RatePlane added");
+        response.sendRedirect("/BillingProject/main.jsp"+"?success=true");
     }
 
 

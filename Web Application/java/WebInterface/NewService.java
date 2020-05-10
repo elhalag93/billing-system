@@ -24,8 +24,12 @@ public class NewService extends HttpServlet {
         db.services.setServiceID(Integer.parseInt(request.getParameter("serviceID")));
         db.services.setServiceName(request.getParameter("serviceName"));
         db.services.setServiceType(request.getParameter("serviceType"));
+        if (!request.getParameter("fees").equalsIgnoreCase(""))
+        {
+            db.services.setFees(Float.parseFloat(request.getParameter("fees")));
+        }
         db.addNewService();
-        out.print("Service added");
+        response.sendRedirect("/BillingProject/main.jsp"+"?success=true");
         
     }
 

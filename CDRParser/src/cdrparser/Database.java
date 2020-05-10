@@ -42,7 +42,7 @@ public class Database {
     public boolean addCdr(CDR cdr) {
         try {
             connect();
-            sqlCommand = "INSERT INTO cdr VALUES (?,?,?,?,?,?,?,?,?)";
+            sqlCommand = "INSERT INTO cdr VALUES (?,?,?,?,?,?,?,?,?,?)";
             preparedStatment = connection.prepareStatement(sqlCommand);
             preparedStatment.setLong(1, cdr.getOrigin());
             preparedStatment.setString(2, cdr.getDestination());
@@ -53,6 +53,7 @@ public class Database {
             preparedStatment.setFloat(7, cdr.getExternalRating());
             preparedStatment.setFloat(8, cdr.getInternalRating());
             preparedStatment.setBoolean(9, cdr.isRated());
+            preparedStatment.setBoolean(10, cdr.isIsBilled());
             preparedStatment.execute();
             operation = true;
         } catch (SQLException ex) {

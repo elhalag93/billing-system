@@ -9,12 +9,29 @@ package classes;
 public class Services {
     int serviceID;
     String serviceName,serviceType;
+    float fees;
 
     public Services(int serviceID, String serviceName, String serviceType) {
         this.serviceID = serviceID;
         this.serviceName = serviceName;
         this.serviceType = serviceType;
     }
+
+    public Services(int serviceID, String serviceName, String serviceType, float fees) {
+        this.serviceID = serviceID;
+        this.serviceName = serviceName;
+        this.serviceType = serviceType;
+        this.fees = fees;
+    }
+
+    public float getFees() {
+        return fees;
+    }
+
+    public void setFees(float fees) {
+        this.fees = fees;
+    }
+    
 
     
     

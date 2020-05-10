@@ -33,6 +33,7 @@ public class NewCustomer extends HttpServlet {
         db.customer.setNationalID(request.getParameter("nationalID"));
         db.customer.setRatePlane_id(Integer.parseInt(request.getParameter("RatePlanID")));       
         db.addNewCustomer();
+        response.sendRedirect("/BillingProject/main.jsp"+"?success=true");
    
     }
 

@@ -28,7 +28,7 @@ public class NewProfile extends HttpServlet {
         db.profile.setCustomerID(Integer.parseInt(request.getParameter("customerID")));
         db.profile.setRatePlanID(Integer.parseInt(request.getParameter("RatePlanID")));
         db.addNewProfil();
-        out.print("Profile added");
+        response.sendRedirect("/BillingProject/main.jsp"+"?success=true");
     }
 
   

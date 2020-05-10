@@ -4,9 +4,12 @@ package WebInterface;
  *
  * @author mo
  */
+import cdrparser.CDR;
 import classes.Customer;
+import classes.OnetimeService;
 import classes.Profile;
 import classes.RatePlan;
+import classes.RecurringService;
 import classes.ServicePackage;
 import classes.Services;
 import java.sql.Connection;
@@ -14,6 +17,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -26,6 +31,7 @@ public class Database {
     private String sqlcommand;
     private PreparedStatement preparedstatement;
     private ResultSet result;
+    boolean operation = false;
     Services services = new Services();
     ServicePackage servicePackage = new ServicePackage();
     Customer customer = new Customer();
@@ -58,15 +64,41 @@ public class Database {
 
     }
 
+    public boolean addCdr(CDR cdr) {
+        try {
+            connect();
+            sqlcommand = "INSERT INTO cdr VALUES (?,?,?,?,?,?,?,?,?)";
+            preparedstatement = connection.prepareStatement(sqlcommand);
+            preparedstatement.setLong(1, cdr.getOrigin());
+            preparedstatement.setString(2, cdr.getDestination());
+            preparedstatement.setInt(3, cdr.getServiceID());
+            preparedstatement.setInt(4, cdr.getDuration_message_volume());
+            preparedstatement.setString(5, cdr.getStartDate());
+            preparedstatement.setTime(6, cdr.getStartTime());
+            preparedstatement.setFloat(7, cdr.getExternalRating());
+            preparedstatement.setFloat(8, cdr.getInternalRating());
+            preparedstatement.setBoolean(9, cdr.isRated());
+            preparedstatement.execute();
+            operation = true;
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            operation = false;
+        } finally {
+            stop();
+            return operation;
+        }
+    }
+
     public void addNewService() {
         connect();
 
         try {
-            sqlcommand = "insert into services values(?,?,?)";
+            sqlcommand = "insert into services values(?,?,?,?)";
             preparedstatement = connection.prepareStatement(sqlcommand);
             preparedstatement.setInt(1, services.getServiceID());
             preparedstatement.setString(2, services.getServiceName());
             preparedstatement.setString(3, services.getServiceType());
+            preparedstatement.setFloat(4, services.getFees());
 
             result = preparedstatement.executeQuery();
             System.out.println("Service is added Successfully" + result);
@@ -140,7 +172,7 @@ public class Database {
         stop();
     }
 
-    public void addNewCustomer() {
+    public boolean addNewCustomer() {
         connect();
 
         try {
@@ -156,12 +188,15 @@ public class Database {
             preparedstatement.setInt(8, customer.getRatePlane_id());
             result = preparedstatement.executeQuery();
             System.out.println("Customer is added Successfully" + result);
+            return true;
         } catch (SQLException ex) {
-            System.out.println("Something wrong happened");
-            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
-        }
 
-        stop();
+            return false;
+//            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+
+            stop();
+        }
     }
 
     public Customer getCustomer(String msisdn) {
@@ -169,7 +204,7 @@ public class Database {
             connect();
             sqlcommand = "SELECT * FROM customers WHERE msisdn LIKE ?";
             preparedstatement = connection.prepareStatement(sqlcommand);
-            preparedstatement.setString(1, "%"+msisdn);
+            preparedstatement.setString(1, "%" + msisdn);
             result = preparedstatement.executeQuery();
 
             while (result.next()) {
@@ -191,4 +226,160 @@ public class Database {
         }
     }
 
+    public Vector<Services> getServices() {
+        Vector<Services> services = new Vector();
+        try {
+            connect();
+            sqlcommand = " select * from services WHERE service_type like 'recurring' OR service_type like 'one time'";
+            preparedstatement = connection.prepareStatement(sqlcommand);
+            result = preparedstatement.executeQuery();
+            while (result.next()) {
+                services.add(new Services(result.getInt(1),
+                        result.getString(2),
+                        result.getString(3),
+                        result.getFloat(4)));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        } finally {
+            stop();
+            return services;
+        }
+    }
+
+    public Services getService(int sid) {
+        Services service = null;
+        try {
+            connect();
+            sqlcommand = " select * from services WHERE service_id =" + sid;
+            preparedstatement = connection.prepareStatement(sqlcommand);
+            result = preparedstatement.executeQuery();
+            while (result.next()) {
+                service = new Services(result.getInt(1),
+                        result.getString(2),
+                        result.getString(3),
+                        result.getFloat(4));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        } finally {
+            stop();
+            return service;
+        }
+    }
+
+    public void addRecurringService(int serviceID, int customerID, float fees) {
+        connect();
+
+        try {
+            sqlcommand = "select * from recurring_services where service_id=" + serviceID + "and customer_id=" + customerID + "and isactive= false";
+            preparedstatement = connection.prepareStatement(sqlcommand);
+            Statement stmt = connection.createStatement();
+            result = preparedstatement.executeQuery();
+            if (result.next()) {
+                stmt.executeUpdate("update recurring_services set isactive= true where service_id=" + serviceID + " and customer_id=" + customerID);
+            } else {
+                sqlcommand = "select * from recurring_services where service_id=" + serviceID + "and customer_id=" + customerID + "and isactive= true";
+                preparedstatement = connection.prepareStatement(sqlcommand);
+                result = preparedstatement.executeQuery();
+                if (result.next()) {
+                    System.out.println("Service is already added" + result);
+                    stop();
+                } else {
+                    sqlcommand = "insert into recurring_services values(?,?,?,true)";
+                    preparedstatement = connection.prepareStatement(sqlcommand);
+                    preparedstatement.setInt(1, serviceID);
+                    preparedstatement.setInt(2, customerID);
+                    preparedstatement.setFloat(3, fees);
+                    preparedstatement.executeQuery();
+                    System.out.println("Service is added Successfully" + result);
+                }
+            }
+        } catch (SQLException ex) {
+            System.out.println("Something wrong happened");
+            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        stop();
+    }
+
+    public void stopRecurringService(int serviceID, int customerID, float fees) {
+        connect();
+
+        try {
+            Statement stmt = connection.createStatement();
+            stmt.executeUpdate("update recurring_services set isactive= false where service_id=" + serviceID + " and customer_id=" + customerID);
+        } catch (SQLException ex) {
+            System.out.println("Something wrong happened");
+            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        stop();
+    }
+
+    public void addOnetimeService(int serviceID, int customerID, float fees) {
+        connect();
+
+        try {
+            sqlcommand = "insert into onetime_services values(?,?,?,'now',false)";
+            preparedstatement = connection.prepareStatement(sqlcommand);
+            preparedstatement.setInt(1, serviceID);
+            preparedstatement.setInt(2, customerID);
+            preparedstatement.setFloat(3, fees);
+
+            result = preparedstatement.executeQuery();
+            System.out.println("Service is added Successfully" + result);
+        } catch (SQLException ex) {
+            System.out.println("Something wrong happened");
+            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        stop();
+    }
+
+    public Vector<RecurringService> getRecurringServices(int cid) {
+        Vector<RecurringService> services = new Vector();
+        try {
+            connect();
+            sqlcommand = " select * from recurring_services WHERE customer_id = " + cid + " AND isactive = true";
+            preparedstatement = connection.prepareStatement(sqlcommand);
+            result = preparedstatement.executeQuery();
+            while (result.next()) {
+                services.add(new RecurringService(result.getInt(1),
+                        result.getInt(2),
+                        result.getFloat(3),
+                        result.getBoolean(4)));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        } finally {
+            stop();
+            return services;
+        }
+    }
+
+    public Vector<OnetimeService> getOnetimeServices(int cid) {
+        Vector<OnetimeService> services = new Vector();
+        try {
+            connect();
+            sqlcommand = " select * from onetime_services WHERE customer_id = " + cid;
+            preparedstatement = connection.prepareStatement(sqlcommand);
+            result = preparedstatement.executeQuery();
+            while (result.next()) {
+                services.add(new OnetimeService(result.getInt(1),
+                        result.getInt(2),
+                        result.getFloat(3),
+                        result.getTimestamp(4)));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        } finally {
+            stop();
+            return services;
+        }
+    }
 }
