@@ -30,6 +30,7 @@
         %>
         <%if (request.getParameter("key") != null) {
                 String customerMSISDN = request.getParameter("key");
+                String cID = request.getParameter("cid");
                 Database db = new Database();
                 customer = db.getCustomer(customerMSISDN);
                 Vector<Services> services = db.getServices();
@@ -96,7 +97,7 @@
                                                         <form class="s003 inner-form" action="AddService" method="GET">
                                                             <input class="form-control mr-sm-2" type="hidden" name="sid" value="<%=service.getServiceID()%>">
                                                             <input class="form-control mr-sm-2" type="hidden" name="stype" value="<%=service.getServiceType()%>">
-                                                            <input class="form-control mr-sm-2" type="hidden" name="cid" value="<%=customer.getCustomerID()%>">
+                                                            <input class="form-control mr-sm-2" type="hidden" name="cid" value="<%=cID%>">
                                                             <input class="form-control mr-sm-2" type="hidden" name="fees" value="<%=service.getFees()%>">
                                                             <input class="btn btn-outline-success my-2 my-sm-0" data-toggle="pill" type="submit" aria-controls="pills-contact" value="Add Service"></input>
                                                         </form>

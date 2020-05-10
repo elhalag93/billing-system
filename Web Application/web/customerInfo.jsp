@@ -62,6 +62,7 @@
                             <form class="form-inline my-2 my-lg-0" action="services.jsp">
                                 <a class="btn btn-outline-success my-2 my-sm-0" data-toggle="pill" href="main.jsp" aria-controls="pills-contact">Main</a>
                                 <input class="form-control mr-sm-2" type="hidden" name="key"  value="">
+                                <input class="form-control mr-sm-2" type="hidden" name="cid"  value="<%=customer.getCustomerID()%>">
                                 <button class="btn btn-outline-success my-2 my-sm-0" data-toggle="pill" type="submit" aria-controls="pills-contact">Add Service</button>
                             </form>
                             <ul class="nav nav-tabs">

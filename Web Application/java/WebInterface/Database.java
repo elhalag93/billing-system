@@ -323,6 +323,7 @@ public class Database {
         connect();
 
         try {
+            System.out.println("#########"+customerID);
             sqlcommand = "insert into onetime_services values(?,?,?,'now',false)";
             preparedstatement = connection.prepareStatement(sqlcommand);
             preparedstatement.setInt(1, serviceID);
