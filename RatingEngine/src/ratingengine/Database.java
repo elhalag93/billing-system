@@ -136,7 +136,7 @@ public class Database {
         RatingFees fees = null;
         try {
             connect();
-            sqlcommand = " select * from rateplan r inner join service_package s on r.servicepkg_id=s.servicepkg_id where s.service_id ="+ serviceID + "and r.rateplan_id ="+ customerRateplan;
+            sqlcommand = " select * from rateplan r inner join service_package s on r.servicepkg_id=s.servicepkg_id where s.service_id =" + serviceID + "and r.rateplan_id =" + customerRateplan;
             preparedstatement = connection.prepareStatement(sqlcommand);
             result = preparedstatement.executeQuery();
 
@@ -159,4 +159,50 @@ public class Database {
         }
     }
 
+    public int getRemainingUnits(int cid) {
+        int units = 0;
+        try {
+            connect();
+            sqlcommand = " select * from customer_units WHERE customer_id =" + cid;
+            preparedstatement = connection.prepareStatement(sqlcommand);
+            result = preparedstatement.executeQuery();
+            while (result.next()) {
+                units = result.getInt(3);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+
+        } finally {
+            stop();
+            return units;
+        }
+    }
+
+    public void reduceRemainingUnits(int cid, int units) {
+        try {
+            connect();
+            sqlcommand = " update customer_units set remaining_units = remaining_units - " + units + " WHERE customer_id =" + cid;
+            preparedstatement = connection.prepareStatement(sqlcommand);
+            preparedstatement.execute();
+        } catch (SQLException ex) {
+            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+
+        } finally {
+            stop();
+        }
+    }
+
+    public void updateInternalRating(int cdrID, float rating) {
+        try {
+            connect();
+            sqlcommand = " update cdr set internalrating =" + rating + ", israted= true, isbilled= false WHERE cdr_id =" + cdrID;
+            preparedstatement = connection.prepareStatement(sqlcommand);
+            preparedstatement.execute();
+        } catch (SQLException ex) {
+            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+
+        } finally {
+            stop();
+        }
+    }
 }

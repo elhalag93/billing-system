@@ -17,11 +17,32 @@ import java.util.Vector;
 public class RatingEngine {
     
     public static Vector<CDR> unratedCdrs = new Vector();
+    private static Database database = new Database();
+
+    /**
+     *
+     * @param c
+     * @param cdr
+     */
+    private static void rateData (Customer c , CDR cdr)
+    {
+        float externalRating = cdr.getExternalRating();
+        if (database.getRemainingUnits(c.getCustomerID()) > externalRating)
+        {
+            database.reduceRemainingUnits(c.getCustomerID(), Math.round(externalRating));
+        } else {
+            database.updateInternalRating(cdr.getCdrID(), externalRating);        
+        }
+    }
+    
+    
+    
+    
 
     
     public static void main(String[] args) {
         
-        Database database = new Database();
+        
         unratedCdrs = database.getUnratedCdrs();
         System.out.println(unratedCdrs.size());
         for (CDR unratedCdr : unratedCdrs)
@@ -32,12 +53,10 @@ public class RatingEngine {
             System.out.println(customer.getRatePlane_id());
             String customerRateplan = customer.getRatePlane_id()+"";
             RatingFees ratingFees = database.getRatingFees(serviceID, customerRateplan);
-            System.out.println(ratingFees.freeUnits);
-            
-            
-            
-            
-            
+            if (unratedCdr.getServiceID() == 3)
+            {
+                rateData(customer, unratedCdr);
+            }
         }
         
     }
