@@ -42,7 +42,7 @@ public class Database {
     public boolean addCdr(CDR cdr) {
         try {
             connect();
-            sqlCommand = "INSERT INTO cdr VALUES (?,?,?,?,?,?,?,?,?,?)";
+            sqlCommand = "INSERT INTO cdr (origin, destination, serviceid, duration_message_volume, startdate, starttime, externalrating, internalrating, israted, isbilled) VALUES (?,?,?,?,?,?,?,?,?,?)";
             preparedStatment = connection.prepareStatement(sqlCommand);
             preparedStatment.setLong(1, cdr.getOrigin());
             preparedStatment.setString(2, cdr.getDestination());

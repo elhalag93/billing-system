@@ -36,7 +36,6 @@ public class CDR {
         this.externalRating = externalRating;
         this.internalRating = internalRating;
         this.isRated = isRated;
-        
         this.cdrID = cdrID;
     }
     
@@ -50,6 +49,7 @@ public class CDR {
         this.externalRating = externalRating;
         this.internalRating = internalRating;
         this.isRated = isRated;
+       
         this.isBilled = isBilled;
     }
 
