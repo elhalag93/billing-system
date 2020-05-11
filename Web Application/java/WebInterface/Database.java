@@ -410,4 +410,95 @@ public class Database {
             return bills;
         }
     }
+
+    public Vector<RatePlan> getRateplans() {
+        Vector<RatePlan> ratePlans = new Vector();
+        try {
+            connect();
+            sqlcommand = " select * from rateplan";
+            preparedstatement = connection.prepareStatement(sqlcommand);
+            result = preparedstatement.executeQuery();
+            while (result.next()) {
+                ratePlans.add(new RatePlan(result.getInt(1),
+                        result.getInt(2),
+                        result.getInt(3),
+                        result.getFloat(4)));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        } finally {
+            stop();
+            return ratePlans;
+        }
+    }
+
+    public void addcustomerMonthlyUnits(int customerID, int rid, int units) {
+        connect();
+
+        try {
+            sqlcommand = "select * from customer_units where customer_id=" + customerID + "and rateplan_id=" + rid;
+            preparedstatement = connection.prepareStatement(sqlcommand);
+            Statement stmt = connection.createStatement();
+            result = preparedstatement.executeQuery();
+            if (result.next()) {
+                stmt.executeUpdate("update customer_units set remaining_units=" + units);
+            } else {
+                sqlcommand = "insert into customer_units values(?,?,?)";
+                preparedstatement = connection.prepareStatement(sqlcommand);
+                preparedstatement.setInt(1, customerID);
+                preparedstatement.setInt(2, rid);
+                preparedstatement.setInt(3, units);
+                preparedstatement.execute();
+                System.out.println("Units added Successfully" + result);
+            }
+        } catch (SQLException ex) {
+            System.out.println("Something wrong happened");
+            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        stop();
+    }
+
+    public int getRateplanUnits(int rid) {
+        int units = 0;
+        try {
+            connect();
+            sqlcommand = " select * from rateplan WHERE rateplan_id =" + rid;
+            preparedstatement = connection.prepareStatement(sqlcommand);
+            result = preparedstatement.executeQuery();
+            while (result.next()) {
+                        units = result.getInt(3);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+            
+        } finally {
+            stop();
+            return units;
+        }
+    }
+    
+    
+    public int getRemainingUnits(int cid) {
+        int units = 0;
+        try {
+            connect();
+            sqlcommand = " select * from customer_units WHERE customer_id =" + cid;
+            preparedstatement = connection.prepareStatement(sqlcommand);
+            result = preparedstatement.executeQuery();
+            while (result.next()) {
+                        units = result.getInt(3);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+            
+        } finally {
+            stop();
+            return units;
+        }
+    }
+    
+    
+
 }

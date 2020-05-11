@@ -39,6 +39,7 @@
                 Vector<RecurringService> addedServices = db.getRecurringServices(customer.getCustomerID());
                 Vector<OnetimeService> addedServices2 = db.getOnetimeServices(customer.getCustomerID());
                 Vector<Bills> customerBills = db.getBills(customer.getCustomerID());
+                int remainingUnits = db.getRemainingUnits(customer.getCustomerID());
                 if (customer.getMsisdn() == null) {
                     response.sendRedirect("/BillingProject/main.jsp" + "?customerError=true");
                 } else {
@@ -55,18 +56,28 @@
                                         <h4 class="pt-sm-2 pb-1 mb-0 text-nowrap"><%= customer.getCustomerName()%></h4>
                                         <p class="mb-0"><%= customer.getMsisdn()%></p>
                                         <div class="mt-2">
+                                            <form class="s003 inner-form" action="rateplans.jsp" method="GET">
+                                                <input class="form-control mr-sm-2" type="hidden" name="cid" value="<%=customer.getCustomerID()%>">
+                                                <input class="form-control mr-sm-2" type="hidden" name="key"  value="">
+                                                <input class="btn btn-outline-success my-2 my-sm-0" data-toggle="pill" type="submit" aria-controls="pills-contact" value="Change RatePlan"></input>
+                                            </form>
+
                                         </div>
                                     </div>
 
                                 </div>
-
                             </div>
                             <form class="form-inline my-2 my-lg-0" action="services.jsp">
                                 <a class="btn btn-outline-success my-2 my-sm-0" data-toggle="pill" href="main.jsp" aria-controls="pills-contact">Main</a>
                                 <input class="form-control mr-sm-2" type="hidden" name="key"  value="">
                                 <input class="form-control mr-sm-2" type="hidden" name="cid"  value="<%=customer.getCustomerID()%>">
                                 <button class="btn btn-outline-success my-2 my-sm-0" data-toggle="pill" type="submit" aria-controls="pills-contact">Add Service</button>
-                            </form>
+                            </form>    
+
+
+
+
+
                             <ul class="nav nav-tabs">
                                 <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#info" role="tab" aria-controls="pills-home" aria-selected="true">Info: </a>
                             </ul>
@@ -125,6 +136,8 @@
                                                         <div class="form-group">
                                                             <label>RatePlan ID: </label>
                                                             <label><%=customer.getRatePlane_id()%></label>
+                                                            <label> ==> Free Units: </label>
+                                                            <label><%=db.getRateplanUnits(customer.getRatePlane_id())%></label>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -134,6 +147,12 @@
                                                         <div class="form-group">
                                                             <label>Address:</label>
                                                             <label><%=customer.getAddress()%></label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col">
+                                                        <div class="form-group">
+                                                            <label>Remaining Units: </label>
+                                                            <label><%=remainingUnits%></label>
                                                         </div>
                                                     </div>
                                                 </div>   

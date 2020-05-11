@@ -5,6 +5,7 @@
  */
 package WebInterface;
 
+import classes.Customer;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Date;
@@ -33,6 +34,9 @@ public class NewCustomer extends HttpServlet {
         db.customer.setNationalID(request.getParameter("nationalID"));
         db.customer.setRatePlane_id(Integer.parseInt(request.getParameter("RatePlanID")));       
         db.addNewCustomer();
+        int units = db.getRateplanUnits(Integer.parseInt(request.getParameter("RatePlanID")));
+        Customer c = db.getCustomer(request.getParameter("msisdn"));
+        db.addcustomerMonthlyUnits(c.getCustomerID(), c.getRatePlane_id(), units);
         response.sendRedirect("/BillingProject/main.jsp"+"?success=true");
    
     }
