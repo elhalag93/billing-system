@@ -58,7 +58,7 @@
                                         <div class="mt-2">
                                             <form class="s003 inner-form" action="rateplans.jsp" method="GET">
                                                 <input class="form-control mr-sm-2" type="hidden" name="cid" value="<%=customer.getCustomerID()%>">
-                                                <input class="form-control mr-sm-2" type="hidden" name="key"  value="">
+                                                <input class="form-control mr-sm-2" type="hidden" name="key"  value="<%= customer.getMsisdn()%>">
                                                 <input class="btn btn-outline-success my-2 my-sm-0" data-toggle="pill" type="submit" aria-controls="pills-contact" value="Change RatePlan"></input>
                                             </form>
 
