@@ -4,6 +4,7 @@ package WebInterface;
  *
  * @author mo
  */
+import billing.Bills;
 import cdrparser.CDR;
 import classes.Customer;
 import classes.OnetimeService;
@@ -323,7 +324,7 @@ public class Database {
         connect();
 
         try {
-            System.out.println("#########"+customerID);
+            System.out.println("#########" + customerID);
             sqlcommand = "insert into onetime_services values(?,?,?,'now',false)";
             preparedstatement = connection.prepareStatement(sqlcommand);
             preparedstatement.setInt(1, serviceID);
@@ -381,6 +382,32 @@ public class Database {
         } finally {
             stop();
             return services;
+        }
+    }
+
+    public Vector<Bills> getBills(int cid) {
+        Vector<Bills> bills = new Vector();
+        try {
+            connect();
+            sqlcommand = " select * from bills WHERE customer_id = " + cid;
+            preparedstatement = connection.prepareStatement(sqlcommand);
+            result = preparedstatement.executeQuery();
+            while (result.next()) {
+                bills.add(new Bills(result.getInt(1),
+                        result.getInt(2),
+                        result.getFloat(3),
+                        result.getDate(4),
+                        result.getBoolean(5),
+                        result.getFloat(6),
+                        result.getFloat(7),
+                        result.getFloat(8)));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        } finally {
+            stop();
+            return bills;
         }
     }
 }

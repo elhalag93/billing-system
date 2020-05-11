@@ -4,6 +4,7 @@
     Author     : MohabOmar
 --%>
 
+<%@page import="billing.Bills"%>
 <%@page import="classes.OnetimeService"%>
 <%@page import="classes.Services"%>
 <%@page import="java.util.Vector"%>
@@ -37,6 +38,7 @@
                 customer = db.getCustomer(customerMSISDN);
                 Vector<RecurringService> addedServices = db.getRecurringServices(customer.getCustomerID());
                 Vector<OnetimeService> addedServices2 = db.getOnetimeServices(customer.getCustomerID());
+                Vector<Bills> customerBills = db.getBills(customer.getCustomerID());
                 if (customer.getMsisdn() == null) {
                     response.sendRedirect("/BillingProject/main.jsp" + "?customerError=true");
                 } else {
@@ -177,7 +179,7 @@
                                                 <div class="col">
                                                     <div class="form-group">
                                                         <label>Fees:</label>
-                                                        <label><%=thisService.getFees()%></label>
+                                                        <label><%=thisService.getFees()%>EGP</label>
                                                     </div>
                                                 </div>
                                                 <% if (thisService.getServiceType().equalsIgnoreCase("recurring")) {%>
@@ -197,11 +199,6 @@
                                             <%}%>
                                         </div>
                                     </div>
-
-
-
-
-
 
                                     <div class="row">
                                         <div class="col">
@@ -231,7 +228,7 @@
                                                 <div class="col">
                                                     <div class="form-group">
                                                         <label>Fees:</label>
-                                                        <label><%=thisService.getFees()%></label>
+                                                        <label><%=thisService.getFees()%> EGP</label>
                                                     </div>
                                                 </div>
 
@@ -244,30 +241,88 @@
                                             </div>
                                             <%}%>
                                         </div>
-
-
-
-
                                     </div>
                                 </div>
                             </div>
 
 
-
-
-
-
                             <ul class="nav nav-tabs">
                                 <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="" role="tab" aria-controls="pills-home" aria-selected="false">Bills: </a>
                             </ul>
-                            <div id="bills"></div>
+
+                            <div class="tab-content pt-3">
+                                <div class="tab-pane active">
+
+                                    <div class="row">
+                                        <div class="col">
+                                            <% for (Bills bill : customerBills) {
+                                            %>
+                                            <div class="row">
+                                                <div class="col">
+                                                    <div class="form-group">
+                                                        <label>Bill ID: </label>
+                                                        <label><%=bill.getBill_id()%></label>
+                                                    </div>
+                                                </div>
+                                                <div class="col">
+                                                    <div class="form-group">
+                                                        <label>Bill Date:</label>
+                                                        <label><%=bill.getBill_date()%></label>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col">
+                                                    <div class="form-group">
+                                                        <label>Total RecurringServices:</label>
+                                                        <label><%=bill.getTotalRecurring()%> EGP</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col">
+                                                    <div class="form-group">
+                                                        <label>Total OneTimeServices:</label>
+                                                        <label><%=bill.getTotalOnetime()%> EGP</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col">
+                                                    <div class="form-group">
+                                                        <label>Monthly Fees:</label>
+                                                        <label><%=bill.getRateplanFees()%> EGP</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col">
+                                                    <div class="form-group">
+                                                        <label>Total Amount:</label>
+                                                        <label><%=bill.getAmount_due()%> EGP</label>
+                                                    </div>
+                                                </div>
+                                                <% if (!bill.isGenerated()) {%>
+                                                <div class="col">
+                                                    <div class="form-group">
+                                                        <form class="s003 inner-form" action="" method="GET">                                                            
+                                                            <input class="form-control mr-sm-2" type="hidden" name="cid" value="<%=customer.getCustomerID()%>">                                                           
+                                                            <input class="btn btn-outline-success my-2 my-sm-0" data-toggle="pill" type="submit" aria-controls="pills-contact" value="Generate Bill"></input>
+                                                        </form>
+
+                                                    </div>
+                                                </div>
+                                                <%} else {%>
+                                                <div class="col">
+                                                    <div class="form-group">
+                                                        <label>Generated</label>                                                      
+                                                    </div>
+                                                </div>
+                                                <%}%>
+                                            </div>
+                                            <%}%>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
-
         <%}
             }%>
     </body>
