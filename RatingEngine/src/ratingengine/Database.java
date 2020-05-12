@@ -80,7 +80,7 @@ public class Database {
         Vector<CDR> unratedCdrs = new Vector();
         try {
             connect();
-            sqlcommand = "select * from cdr where israted = false and isbilled= false";
+            sqlcommand = "select * from cdr where israted = false";
             preparedstatement = connection.prepareStatement(sqlcommand);
             result = preparedstatement.executeQuery();
             while (result.next()) {
@@ -136,7 +136,7 @@ public class Database {
         RatingFees fees = null;
         try {
             connect();
-            sqlcommand = " select * from rateplan r inner join service_package s on r.servicepkg_id=s.servicepkg_id where s.service_id =" + serviceID + "and r.rateplan_id =" + customerRateplan;
+            sqlcommand = "select * from rateplan r inner join service_package s on r.servicepkg_id=s.servicepkg_id where s.service_id =" + serviceID + "and r.rateplan_id =" + customerRateplan;
             preparedstatement = connection.prepareStatement(sqlcommand);
             result = preparedstatement.executeQuery();
 
