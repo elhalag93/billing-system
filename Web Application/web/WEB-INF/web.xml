@@ -36,6 +36,14 @@
         <servlet-name>DeActivateService</servlet-name>
         <servlet-class>WebInterface.DeActivateService</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>generateBill</servlet-name>
+        <servlet-class>WebInterface.generateBill</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SubscribeRateplan</servlet-name>
+        <servlet-class>WebInterface.SubscribeRateplan</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>CDRUploadHandler</servlet-name>
         <url-pattern>/upload</url-pattern>
@@ -71,6 +79,14 @@
     <servlet-mapping>
         <servlet-name>DeActivateService</servlet-name>
         <url-pattern>/DeActivateService</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>generateBill</servlet-name>
+        <url-pattern>/generateBill</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SubscribeRateplan</servlet-name>
+        <url-pattern>/SubscribeRateplan</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

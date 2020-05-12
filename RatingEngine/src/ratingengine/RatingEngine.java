@@ -33,7 +33,10 @@ public class RatingEngine {
         if (database.getRemainingUnits(c.getCustomerID()) > externalRating) {
             database.reduceRemainingUnits(c.getCustomerID(), Math.round(externalRating));
         } else {
-            database.updateInternalRating(cdr.getCdrID(), externalRating);
+            int balance = database.getRemainingUnits(c.getCustomerID());
+            float reminder = externalRating - database.getRemainingUnits(c.getCustomerID());
+            database.reduceRemainingUnits(c.getCustomerID(), balance);
+            database.updateInternalRating(cdr.getCdrID(), reminder);
         }
     }
 

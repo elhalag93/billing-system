@@ -40,12 +40,14 @@
         %> 
         <div class="container">
             <div class="row">
+
                 <div class="col-md-4 col-sm-12 col-12">
                 </div>
                 <div class="col-md-4 col-12 text-center">
                     <h2 class="my-md-3 site-title text-black">Billing Portal</h2>
                 </div>
             </div>
+
         </div>
         <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
 
@@ -65,8 +67,9 @@
                 <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#newProfile" role="tab" aria-controls="pills-contact" aria-selected="false">Add Profile</a>
             </li>
             <li>            <form class="form-inline my-2 my-lg-0" action="customerInfo.jsp">
-                    <input class="form-control mr-sm-2" type="search" name="key" placeholder="MSISDN" value="">
+                    <input class="form-control mr-sm-2" type="search" name="key" placeholder="MSISDN">
                     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search Customer</button>
+
                 </form></li>
 
         </ul>

@@ -32,6 +32,14 @@
         <%
             }
         %>
+        <% if (request.getParameter("success") != null && request.getParameter("success").equals("true")) {
+        %>
+        <script type="text/javascript">
+            alert("Rate Plan Changed.");
+        </script>        
+        <%
+            }
+        %>
         <%if (request.getParameter("key") != null) {
                 String customerMSISDN = request.getParameter("key");
                 Database db = new Database();
@@ -317,7 +325,7 @@
                                                 <% if (!bill.isGenerated()) {%>
                                                 <div class="col">
                                                     <div class="form-group">
-                                                        <form class="s003 inner-form" action="" method="GET">                                                            
+                                                        <form class="s003 inner-form" action="generateBill" method="GET">                                                            
                                                             <input class="form-control mr-sm-2" type="hidden" name="cid" value="<%=customer.getCustomerID()%>">                                                           
                                                             <input class="btn btn-outline-success my-2 my-sm-0" data-toggle="pill" type="submit" aria-controls="pills-contact" value="Generate Bill"></input>
                                                         </form>

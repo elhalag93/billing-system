@@ -34,6 +34,7 @@
                 String cID = request.getParameter("cid");
                 Database db = new Database();
                 customer = db.getCustomer(customerMSISDN);
+                int currentRateplan = customer.getRatePlane_id();
                 Vector<RatePlan> ratePlans = db.getRateplans();
                 if (customer.getMsisdn() == null) {
                     response.sendRedirect("/BillingProject/main.jsp" + "?customerError=true");
@@ -97,9 +98,10 @@
                                                 </div>
                                                 <div class="col">
                                                     <div class="form-group">
-                                                        <form class="s003 inner-form" action="" method="GET">
+                                                        <form class="s003 inner-form" action="SubscribeRateplan" method="GET">
                                                             <input class="form-control mr-sm-2" type="hidden" name="rid" value="<%=rateplan.getRatePlane_id()%>">                                                          
-                                                            <input class="form-control mr-sm-2" type="hidden" name="cid" value="<%=cID%>">                                                        
+                                                            <input class="form-control mr-sm-2" type="hidden" name="cid" value="<%=cID%>">
+                                                            <input class="form-control mr-sm-2" type="hidden" name="currentrateplan" value="<%=customer.getRatePlane_id()%>"> 
                                                            <input class="btn btn-outline-success my-2 my-sm-0" data-toggle="pill" type="submit" aria-controls="pills-contact" value="Subscribe"></input>
                                                         </form>
 

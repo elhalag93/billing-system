@@ -330,8 +330,14 @@ public class Database {
             preparedstatement.setInt(1, serviceID);
             preparedstatement.setInt(2, customerID);
             preparedstatement.setFloat(3, fees);
+            preparedstatement.execute();
+            Services service = getService(serviceID);
+            int units = Integer.parseInt(service.getServiceName().replaceAll("[^0-9]", ""));
+            if (units != 0 && units > 0) {
+                System.out.println("########" + units);
+                updateRemainingUnits(units, customerID);
+            }
 
-            result = preparedstatement.executeQuery();
             System.out.println("Service is added Successfully" + result);
         } catch (SQLException ex) {
             System.out.println("Something wrong happened");
@@ -468,18 +474,36 @@ public class Database {
             preparedstatement = connection.prepareStatement(sqlcommand);
             result = preparedstatement.executeQuery();
             while (result.next()) {
-                        units = result.getInt(3);
+                units = result.getInt(3);
             }
         } catch (SQLException ex) {
             Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
-            
+
         } finally {
             stop();
             return units;
         }
     }
-    
-    
+
+    public float getRateplanFees(int rid) {
+        float fees = 0;
+        try {
+            connect();
+            sqlcommand = " select * from rateplan WHERE rateplan_id =" + rid;
+            preparedstatement = connection.prepareStatement(sqlcommand);
+            result = preparedstatement.executeQuery();
+            while (result.next()) {
+                fees = result.getFloat(4);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+
+        } finally {
+            stop();
+            return fees;
+        }
+    }
+
     public int getRemainingUnits(int cid) {
         int units = 0;
         try {
@@ -488,17 +512,61 @@ public class Database {
             preparedstatement = connection.prepareStatement(sqlcommand);
             result = preparedstatement.executeQuery();
             while (result.next()) {
-                        units = result.getInt(3);
+                units = result.getInt(3);
             }
         } catch (SQLException ex) {
             Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
-            
+
         } finally {
             stop();
             return units;
         }
     }
-    
-    
+
+    public void updateRemainingUnits(int units, int cid) {
+        try {
+            connect();
+            sqlcommand = " update customer_units set remaining_units = remaining_units + " + units + " WHERE customer_id =" + cid;
+            preparedstatement = connection.prepareStatement(sqlcommand);
+            preparedstatement.execute();
+        } catch (SQLException ex) {
+            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+
+        } finally {
+            stop();
+        }
+    }
+
+    public void insertPreviousRateplan(int cid, int rid, float fees) {
+        try {
+            connect();
+            sqlcommand = " insert into previous_rateplans values (?,?,?,?)";
+            preparedstatement = connection.prepareStatement(sqlcommand);
+            preparedstatement.setInt(1, cid);
+            preparedstatement.setInt(2, rid);
+            preparedstatement.setFloat(3, fees);
+            preparedstatement.setBoolean(4, false);
+            preparedstatement.execute();
+        } catch (SQLException ex) {
+            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+
+        } finally {
+            stop();
+        }
+    }
+
+    public void updateCustomerRateplan(int cid, int rid) {
+        try {
+            connect();
+            sqlcommand = " update customers set rateplan_id =" + rid + " WHERE customer_id =" + cid;
+            preparedstatement = connection.prepareStatement(sqlcommand);
+            preparedstatement.execute();
+        } catch (SQLException ex) {
+            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+
+        } finally {
+            stop();
+        }
+    }
 
 }
