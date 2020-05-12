@@ -160,19 +160,42 @@ public class Database {
         try {
             connect();
             sqlcommand = "SELECT * FROM rateplan WHERE rateplan_id = " + rid;
-            preparedstatement = connection.prepareStatement(sqlcommand);
+            preparedstatement = connection.prepareStatement(sqlcommand);       
             result = preparedstatement.executeQuery();
 
             while (result.next()) {
 
                 monthlyFees = result.getFloat(4);
-
+                
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
         } finally {
             stop();
             return monthlyFees;
+        }
+    }
+    
+        public float getCustomerTotalRatedCdrs(String msisdn) {
+        float total = 0;
+        try {
+            connect();
+            sqlcommand = "SELECT * FROM cdr WHERE origin = " + msisdn + "AND israted = true AND isbilled = false";
+            preparedstatement = connection.prepareStatement(sqlcommand);
+            Statement stmt = connection.createStatement();
+            result = preparedstatement.executeQuery();
+
+            while (result.next()) {
+
+                total += result.getFloat(8);
+                stmt.executeUpdate("update cdr set isbilled = true where cdr_id ="+ result.getInt(10));
+                
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        } finally {
+            stop();
+            return total;
         }
     }
 

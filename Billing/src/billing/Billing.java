@@ -29,7 +29,8 @@ public class Billing {
              float totalRecurring = database.getCustomerTotalRecurringServices(c.getCustomerID());
              float totalOnetime = database.getCustomerTotalOnetimeServices(c.getCustomerID());
              float monthlyFees = database.getCustomerRateplanFees(c.getRatePlane_id());
-             float totalAmount = totalOnetime + totalRecurring + monthlyFees;
+             float totalRatedCdrs = database.getCustomerTotalRatedCdrs(c.getMsisdn());
+             float totalAmount = totalOnetime + totalRecurring + totalRatedCdrs + monthlyFees;
              database.createBill(c.getCustomerID(), totalAmount, totalRecurring, totalOnetime, monthlyFees);
              database.markOnetimeCharged(c.getCustomerID());
              System.out.println(totalRecurring);
