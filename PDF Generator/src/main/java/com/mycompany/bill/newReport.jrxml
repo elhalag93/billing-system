@@ -1,59 +1,279 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="jasper_report_template" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="6de9d6a4-94d0-4084-a463-421fe23b262b">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="jasper_report_template" pageWidth="595" pageHeight="842" columnWidth="515" leftMargin="40" rightMargin="40" topMargin="50" bottomMargin="50" uuid="e08b4811-dca8-4432-8730-1333c8273370">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="86"/>
+	<parameter name="Total" class="java.lang.String"/>
+	<parameter name="customer_id" class="java.lang.String"/>
+	<parameter name="msisdn" class="java.lang.String"/>
+	<parameter name="national_id" class="java.lang.String"/>
+	<parameter name="customer_name" class="java.lang.String"/>
+	<parameter name="profile_id" class="java.lang.String"/>
+	<parameter name="total_ontime" class="java.lang.String"/>
+	<parameter name="total_recuring" class="java.lang.String"/>
+	<parameter name="rate_plan_fees" class="java.lang.String"/>
+	<parameter name="services" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[]]>
 	</queryString>
-	<field name="country" class="java.lang.String">
-		<fieldDescription><![CDATA[country]]></fieldDescription>
+	<field name="orignating_Number" class="java.lang.String">
+		<fieldDescription><![CDATA[orignating_Number]]></fieldDescription>
 	</field>
-	<field name="name" class="java.lang.String">
-		<fieldDescription><![CDATA[name]]></fieldDescription>
+	<field name="destination_Number" class="java.lang.String">
+		<fieldDescription><![CDATA[destination_Number]]></fieldDescription>
 	</field>
+	<field name="service" class="java.lang.String">
+		<fieldDescription><![CDATA[service]]></fieldDescription>
+	</field>
+	<field name="value" class="java.lang.String">
+		<fieldDescription><![CDATA[value]]></fieldDescription>
+	</field>
+	<title>
+		<band height="314">
+			<line>
+				<reportElement x="0" y="0" width="515" height="1" uuid="9967a79b-b7d7-4367-a393-e046582e7a65"/>
+			</line>
+			<textField isBlankWhenNull="true" bookmarkLevel="1">
+				<reportElement x="0" y="10" width="515" height="30" uuid="55cfef76-607a-4d50-909d-22c24767acc2"/>
+				<textElement textAlignment="Center">
+					<font size="22"/>
+				</textElement>
+				<anchorNameExpression><![CDATA["Total"]]></anchorNameExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="383" y="56" width="121" height="34" uuid="646b6806-4297-4ef7-8f04-04133971514d"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{customer_name}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true" bookmarkLevel="1">
+				<reportElement x="104" y="169" width="136" height="34" uuid="42674f86-a7a1-4d00-afc6-b203971600ac"/>
+				<textElement>
+					<font size="22"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{Total}]]></textFieldExpression>
+				<anchorNameExpression><![CDATA["Total"]]></anchorNameExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="121" y="90" width="121" height="34" uuid="898831bb-bf43-4a2d-a2a2-3f22d555d116"/>
+				<textElement verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{msisdn}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true" bookmarkLevel="1">
+				<reportElement x="0" y="10" width="515" height="30" uuid="55cfef76-607a-4d50-909d-22c24767acc2"/>
+				<textElement textAlignment="Center">
+					<font size="22"/>
+				</textElement>
+				<anchorNameExpression><![CDATA["Total"]]></anchorNameExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="91" y="263" width="424" height="39" uuid="abf89126-3c7e-43f8-b6c7-e2c5fb536dd8"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{services}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="383" y="90" width="121" height="34" uuid="c7b26323-25ce-462d-9172-80b469dd71d7"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{profile_id}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true" bookmarkLevel="1">
+				<reportElement x="121" y="56" width="136" height="34" uuid="42674f86-a7a1-4d00-afc6-b203971600ac"/>
+				<textElement verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{customer_id}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="396" y="221" width="119" height="27" uuid="f0eed339-86bd-43e6-80ec-016e3e92e007"/>
+				<textElement verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{rate_plan_fees}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="119" y="124" width="121" height="34" uuid="b42cd931-fd18-4b3a-9a32-983ed622fb69"/>
+				<textElement verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{national_id}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="396" y="176" width="108" height="27" uuid="977a9b3d-7a72-42ed-9c0e-ad3782ba360d"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{total_recuring}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="134" y="221" width="108" height="27" uuid="f14b0467-1b31-48d2-820f-0ac597740405"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{total_ontime}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="169" width="104" height="34" uuid="3c1f2815-ed1e-42d8-a742-afd5fbefc3b7"/>
+				<textElement verticalAlignment="Middle">
+					<font size="16"/>
+				</textElement>
+				<text><![CDATA[total amount=]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="75" y="10" width="336" height="30" uuid="3f26de36-c0d4-4588-99a1-73ace40afc09"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="22" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[orange telecom egypt]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="262" y="176" width="134" height="27" uuid="66552352-e644-4edc-94e1-17a8204a0868"/>
+				<textElement>
+					<font size="16"/>
+				</textElement>
+				<text><![CDATA[total_recurring =]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="221" width="134" height="27" uuid="fab1067d-e68b-423e-a500-bf118186b85c"/>
+				<textElement>
+					<font size="16"/>
+				</textElement>
+				<text><![CDATA[total_onetime =]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="262" y="221" width="134" height="27" uuid="864a24a7-c612-4f9e-9791-581656f6f3fe"/>
+				<textElement>
+					<font size="16"/>
+				</textElement>
+				<text><![CDATA[ rateplan_fees =]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="262" y="56" width="121" height="34" uuid="9eaee51d-ec24-4c9f-a50d-6f10e2698eab"/>
+				<textElement verticalAlignment="Middle">
+					<font size="16"/>
+				</textElement>
+				<text><![CDATA[customer name=]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="90" width="121" height="34" uuid="fe827d08-8f16-43aa-bc50-78de4908cc52"/>
+				<textElement verticalAlignment="Middle">
+					<font size="16"/>
+				</textElement>
+				<text><![CDATA[msisdn=]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="56" width="121" height="34" uuid="63845a65-1a4f-4e28-b472-dc35407d827e"/>
+				<textElement verticalAlignment="Middle">
+					<font size="16"/>
+				</textElement>
+				<text><![CDATA[customer id=]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="262" y="90" width="121" height="34" uuid="375f795a-b0a0-4d3e-a6a8-716425a72720"/>
+				<textElement verticalAlignment="Middle">
+					<font size="16"/>
+				</textElement>
+				<text><![CDATA[profile id=]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="124" width="121" height="34" uuid="c0079773-2cb6-435b-b81e-eaf065b9b6a4"/>
+				<textElement verticalAlignment="Middle">
+					<font size="16"/>
+				</textElement>
+				<text><![CDATA[national id=]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="263" width="134" height="32" uuid="6bc365bd-19a9-4222-bb77-c2bc92385c43"/>
+				<textElement verticalAlignment="Middle">
+					<font size="16"/>
+				</textElement>
+				<text><![CDATA[services]]></text>
+			</staticText>
+		</band>
+	</title>
 	<columnHeader>
 		<band height="23" splitType="Stretch">
 			<staticText>
-				<reportElement mode="Opaque" x="0" y="3" width="535" height="15" backcolor="#70A9A9" uuid="5882033f-7991-45b1-a787-625175dd6e18"/>
+				<reportElement mode="Opaque" x="0" y="3" width="504" height="15" backcolor="#70A9A9" uuid="16041071-0ec4-4d4a-926f-1563c32a7eeb"/>
 				<box>
 					<bottomPen lineWidth="1.0" lineColor="#CCCCCC"/>
 				</box>
 				<text><![CDATA[ ]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="414" y="3" width="121" height="15" uuid="a2f8b240-3e05-47d8-bcca-3f29b88de47f"/>
+				<reportElement x="0" y="3" width="138" height="20" uuid="52c161c1-fe6e-4309-90fa-6ed6cbdc0b68"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
-				<text><![CDATA[Country]]></text>
+				<text><![CDATA[orignating_Number]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="0" y="3" width="136" height="15" uuid="44552184-a50b-4c0c-a80b-e3b79d02d3ef"/>
+				<reportElement x="138" y="3" width="140" height="20" uuid="def21872-c9b3-4f6a-9f67-8f4757061cdf"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
-				<text><![CDATA[Name]]></text>
+				<text><![CDATA[destination_Number]]></text>
 			</staticText>
+			<staticText>
+				<reportElement x="278" y="3" width="133" height="20" uuid="0fb1d0d8-08e1-44b3-bd0b-4348269fe450"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[service]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="411" y="3" width="93" height="20" uuid="252d901a-48fd-4f64-b59d-e4a0d99bd7c5"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[value]]></text>
+			</staticText>
+			<break>
+				<reportElement x="0" y="2" width="100" height="1" uuid="7a3957f2-2334-4191-8781-4864c31572e5"/>
+			</break>
 		</band>
 	</columnHeader>
 	<detail>
 		<band height="16" splitType="Stretch">
 			<staticText>
-				<reportElement mode="Opaque" x="0" y="0" width="535" height="14" backcolor="#E5ECF9" uuid="99570fa6-13bf-4ff3-a1a5-4c7ac2494c03"/>
+				<reportElement mode="Opaque" x="0" y="0" width="504" height="14" backcolor="#E5ECF9" uuid="928e97a7-0882-4534-a559-4c5d292dab98"/>
 				<box>
 					<bottomPen lineWidth="0.25" lineColor="#CCCCCC"/>
 				</box>
-				<text><![CDATA[ ]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="414" y="0" width="121" height="15" uuid="eb58650b-7f62-4934-bc95-a3158b283a9c"/>
+				<reportElement x="0" y="0" width="138" height="15" uuid="ac47fe46-c1ce-433d-ae32-b2ff6682d646"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="9"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{country}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{orignating_Number}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="0" y="0" width="136" height="15" uuid="b819f095-14fd-4650-955e-76d420c303da"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA[$F{name}]]></textFieldExpression>
+				<reportElement x="138" y="0" width="140" height="15" uuid="b8a3eb8d-9c86-4e4c-aff8-4b6394fc63d5"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{destination_Number}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="278" y="0" width="133" height="15" uuid="bfcee87d-7442-432a-9194-9a3546d40380"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{service}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="411" y="0" width="93" height="15" uuid="6a3d8056-b1e3-4efd-878b-d9ccfab22a46"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{value}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
