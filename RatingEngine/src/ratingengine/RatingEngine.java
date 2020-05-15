@@ -59,6 +59,7 @@ public class RatingEngine {
                     System.out.println("3");
                     int balance = database.getRemainingUnits(c.getCustomerID());
                     int reminder = cost_in_felix - database.getRemainingUnits(c.getCustomerID());
+                    
                     database.reduceRemainingUnits(c.getCustomerID(), balance);
                     database.updateInternalRating(cdr.getCdrID(), reminder * ratingFees.cost_W_orgEQdest);
 
@@ -77,6 +78,7 @@ public class RatingEngine {
                 } else {
                     int balance = database.getRemainingUnits(c.getCustomerID());
                     int reminder = cost_in_felix - database.getRemainingUnits(c.getCustomerID());
+                    
                     database.reduceRemainingUnits(c.getCustomerID(), balance);
                     database.updateInternalRating(cdr.getCdrID(), reminder * ratingFees.cost_D_orgEQdest);
                     System.out.println("6");
@@ -98,8 +100,9 @@ public class RatingEngine {
                     System.out.println("9");
                     int balance = database.getRemainingUnits(c.getCustomerID());
                     int reminder = cost_in_felix - database.getRemainingUnits(c.getCustomerID());
+                    int remainigCost = reminder / 5;
                     database.reduceRemainingUnits(c.getCustomerID(), balance);
-                    database.updateInternalRating(cdr.getCdrID(), reminder * ratingFees.cost_W_orgNEQdest);
+                    database.updateInternalRating(cdr.getCdrID(), remainigCost * ratingFees.cost_W_orgNEQdest);
 
                 }
 
@@ -117,8 +120,9 @@ public class RatingEngine {
                     System.out.println("12");
                     int balance = database.getRemainingUnits(c.getCustomerID());
                     int reminder = cost_in_felix - database.getRemainingUnits(c.getCustomerID());
+                    int remainigCost = reminder / 5;
                     database.reduceRemainingUnits(c.getCustomerID(), balance);
-                    database.updateInternalRating(cdr.getCdrID(), reminder * ratingFees.cost_D_orgNEQdest);
+                    database.updateInternalRating(cdr.getCdrID(), remainigCost * ratingFees.cost_D_orgNEQdest);
 
                 }
             }
